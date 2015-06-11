@@ -1,0 +1,23 @@
+{
+  "name": "ChatProject",
+  "version": "0.0.0",
+  "homepage": "y",
+  "authors": [
+    "Sam Grayson <samuel.c.grayson17@gmail.com>"
+  ],
+  "license": "y",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "fontawesome": "~4.3.0",
+    "jquery": "~2.1.4",
+    "normalize.css": "~3.0.3",
+    "underscore": "~1.8.3"
+  }
+}
