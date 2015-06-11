@@ -10,16 +10,20 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="PageWrapper">
+  <div class="pageWrapper">
     <div class="contentWidth">
       <div class="title">
         <h1>Chatty Cathy</h1>
       </div>
-      <div class="loginScreen">
-        <form id="userNameForm"><input type="text" placeholder="Username" class="login userInput"></input></form>
-        <form id="passwordForm"><input type="text" placeholder="Password" class="login passwordInput"></input></form>
-      </div>
-      <div class="signUpWrap">
+      <div class="loginWrap">
+        <div class="loginScreen">
+          <form id="userNameForm"><i class="fa fa-user"></i><input type="text" placeholder="Username" class="login userInput"></input></form>
+          <form id="passwordForm"><i class="fa fa-unlock"></i><input type="text" placeholder="Password" class="login passwordInput"></input></form>
+        </div>
+        <div class="signUpWrap">
+          <form><button id="logInButton" class="btn btn-default btn-md">LogIn</button></form>
+          <form><button id="signUpButton" class="btn btn-default btn-md">SignUp</button></form>
+        </div>
       </div>
     </div>
   </div>
