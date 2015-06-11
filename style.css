@@ -1,0 +1,194 @@
+html {
+  width: 100%;
+  height: 100%; }
+
+body {
+  width: 100%;
+  height: 100%; }
+
+.pageWrapper {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("images/1950s.jpg");
+  background-position: 50% 15%;
+  background-size: 1800px 2214px; }
+
+.contentWidth {
+  margin: 0 auto;
+  width: 60%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+
+.loginWrap {
+  width: 100%;
+  box-shadow: 5px 10px 15px black; }
+
+.title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  height: 200px;
+  width: 100%; }
+  .title h1 {
+    color: #48c7ac;
+    text-shadow: 0px 2px 2px rgba(242, 25, 55, 0.6);
+    font-size: 8vw;
+    margin: 0;
+    font-family: 'Pacifico', cursive; }
+
+.loginScreen {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  background-color: rgba(237, 237, 237, 0.9);
+  height: 250px;
+  width: 100%;
+  border: 1px solid white; }
+  .loginScreen form {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    margin-top: 40px; }
+  .loginScreen #passwordForm {
+    margin-bottom: 30px; }
+  .loginScreen .login {
+    width: 80%;
+    height: 50px;
+    padding-left: 20px;
+    font-size: 1.2em;
+    font-style: italic; }
+  .loginScreen i {
+    margin-right: 20px;
+    font-size: 1.5em; }
+
+.signUpWrap {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  background-color: rgba(237, 237, 237, 0.9);
+  height: 50px;
+  width: 100%;
+  border: 1px solid white;
+  border-top: 0px; }
+  .signUpWrap #logInButton {
+    margin-right: 20px; }
+  .signUpWrap button {
+    width: 150px; }
+
+/*# sourceMappingURL=style.css.map */
+
+
+.top-box {
+  height: 149px;
+  width: 250px;
+  background-color: #F21937;
+  display: flex;
+  vertical-align: middle;
+  position: fixed;
+  border-bottom: 1px dotted #F4ecef;
+}
+h2 {
+  color: #F4ECEF;
+  font-family: Helvetica, sans-serif;
+  font-size: 2em;
+  margin: 20px 0 0 20px;
+  height: 100vh;
+  display: flex;
+  position:absolute;
+  background-color: #F21937
+  width: 250px;
+  height: 149px;
+
+}
+.username-box {
+  border-top: 1px dotted #F4ECEF;
+  width: 250px;
+  height: 100%;
+  text-align: left;
+  display: block;
+  vertical-align: left;
+  overflow: scroll;
+  background-color: #F21937
+}
+.user-wrapper {
+}
+.online-user{
+  color: white;
+  margin-left: 40px;
+  font-size: 12px;
+}
+button {
+  display: block;
+  width: 50px;
+  color: #F4ECEF;
+  font-size: 8px;
+}
+button img {
+  margin-right: 1px;
+  vertical-align: left;
