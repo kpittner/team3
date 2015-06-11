@@ -142,3 +142,54 @@ body {
     width: 150px; }
 
 /*# sourceMappingURL=style.css.map */
+
+
+.top-box {
+  height: 149px;
+  width: 250px;
+  background-color: #F21937;
+  display: flex;
+  vertical-align: middle;
+  position: fixed;
+  border-bottom: 1px dotted #F4ecef;
+}
+h2 {
+  color: #F4ECEF;
+  font-family: Helvetica, sans-serif;
+  font-size: 2em;
+  margin: 20px 0 0 20px;
+  height: 100vh;
+  display: flex;
+  position:absolute;
+  background-color: #F21937
+  width: 250px;
+  height: 149px;
+
+}
+.username-box {
+  border-top: 1px dotted #F4ECEF;
+  width: 250px;
+  height: 100%;
+  text-align: left;
+  display: block;
+  vertical-align: left;
+  overflow: scroll;
+  background-color: #F21937
+}
+.user-wrapper {
+}
+.online-user{
+  color: white;
+  margin-left: 40px;
+  font-size: 12px;
+}
+button {
+  display: block;
+  width: 50px;
+  color: #F4ECEF;
+  font-size: 8px;
+}
+button img {
+  margin-right: 1px;
+  vertical-align: left;
+}
