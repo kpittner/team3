@@ -141,55 +141,136 @@ body {
   .signUpWrap button {
     width: 150px; }
 
-/*# sourceMappingURL=style.css.map */
-
-
-.top-box {
-  height: 149px;
-  width: 250px;
-  background-color: #F21937;
-  display: flex;
-  vertical-align: middle;
-  position: fixed;
-  border-bottom: 1px dotted #F4ecef;
-}
-h2 {
-  color: #F4ECEF;
-  font-family: Helvetica, sans-serif;
-  font-size: 2em;
-  margin: 20px 0 0 20px;
-  height: 100vh;
-  display: flex;
-  position:absolute;
-  background-color: #F21937
-  width: 250px;
-  height: 149px;
-
-}
-.username-box {
-  border-top: 1px dotted #F4ECEF;
-  width: 250px;
-  height: 100%;
-  text-align: left;
+.wrapper {
+  float: left;
   display: block;
-  vertical-align: left;
-  overflow: scroll;
-  background-color: #F21937
-}
+  background-color: rgba(242, 25, 55, 0.8);
+  width: 20%;
+  height: 100%; }
+
+.chatters-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%; }
+
 .user-wrapper {
-}
-.online-user{
-  color: white;
-  margin-left: 40px;
-  font-size: 12px;
-}
-button {
+  width: 100%; }
+
+.username-box {
+  width: 100%; }
+
+.messages {
+  margin-right: 10px;
+  float: right;
+  width: 100%;
+  margin-top: 20px;
+  height: 500px;
+  overflow: scroll;
+  border-style: ridge;
+  border-color: rgba(244, 236, 239, 0.8);
+  border-radius: 10px;
+  background-color: rgba(244, 236, 239, 0.8); }
+
+.user {
+  margin-right: 10px;
+  margin-top: 20px;
+  width: 100%;
+  float: right;
+  background-color: rgba(72, 199, 172, 0.8);
+  padding-top: 10px;
+  border-radius: 10px;
+  padding-bottom: 5px; }
+
+ul.username {
+  margin: 0; }
+
+.username li {
+  list-style-type: none;
+  display: inline;
+  float: right; }
+
+.username a {
+  text-decoration: none;
+  display: inline;
+  color: #EDF2F2; }
+
+ul.username img {
+  height: 40px;
+  width: 40px;
+  vertical-align: middle;
+  padding-bottom: 5px; }
+
+.dropdown-toggle {
+  border: none;
+  background-color: rgba(72, 199, 172, 0.8);
+  color: #EDF2F2; }
+
+.dropdown-toggle:hover {
+  border: none;
+  background-color: rgba(72, 199, 172, 0.8);
+  color: #EDF2F2; }
+
+.outputs-IM li {
+  list-style-type: none;
+  border-style: solid;
+  border-bottom: 1px;
+  border-left: none;
+  border-right: none;
+  border-width: thin;
+  width: 800px;
+  border-color: rgba(72, 199, 172, 0.8); }
+
+.outputs-IM li img {
+  margin-top: 10px;
+  height: 40px;
+  width: 40px; }
+
+.outputs-IM p {
+  margin-left: 5em; }
+
+input {
+  width: 80%;
+  float: left;
+  margin-top: 20px;
+  font-size: 20px;
+  border-radius: 10px;
+  border-color: rgba(244, 236, 239, 0.8);
+  background-color: rgba(244, 236, 239, 0.8);
+  height: 150px;
+  width: 80%; }
+
+input:focus {
+  outline: none; }
+
+.btn-success {
+  margin-right: 10px;
+  padding-left: 5px;
+  margin-left: 0;
+  width: 10%;
+  margin-left: 25px;
+  margin-top: 16px;
+  font-size: 20px;
+  border-radius: 10px;
+  background-color: rgba(72, 199, 172, 0.8); }
+
+.btn-success:hover {
+  background-color: rgba(72, 199, 172, 0.8); }
+
+.rightWrapper {
+  height: 100%;
+  width: 75%;
   display: block;
-  width: 50px;
-  color: #F4ECEF;
-  font-size: 8px;
-}
-button img {
-  margin-right: 1px;
-  vertical-align: left;
-}
+  float: right; }
+
+/*# sourceMappingURL=style.css.map */
