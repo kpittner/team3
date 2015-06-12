@@ -9,7 +9,7 @@ var page = {
 
 
   accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyaccount',
-  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyposts',
+  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathypost',
 
   init: function() {
     page.initEvents();
@@ -87,10 +87,10 @@ loadPosts: function () {
   addPost: function (event) {
   var newPost = {
     post: $('#post').val(),
-    username: $('#dropdownMenu1').attr('name')
+    username: $('#dropdownMenu1').attr('name'),
+    dt: moment().format('MMMM Do, h:mm a')
   };
   page.createPost(newPost);
-
   $('#post').val("");
   },
 
@@ -150,7 +150,6 @@ loadPosts: function () {
     var compiledTmpl = _.template(page.getTmpl(tmplName));
     _.each(data, function (el){
       if ($('#userNameInput').val() === el.username && $('#passwordInput').val() === el.password){
-      console.log(el);
       $target.html(compiledTmpl(el));
     }
     })
