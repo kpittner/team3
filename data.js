@@ -1,7 +1,7 @@
 var templates = {};
 
 templates.account = [
-  '<li>',
+  '<li id="<%=_id%>"">',
   '<a class="name" href="kpittner">',
   '</a>',
   '<button class="btn btn-default dropdown-toggle" name="<%=username%>" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">',
@@ -12,5 +12,5 @@ templates.account = [
 ].join("");
 
 templates.posts = [
-  '<li>User:<span id="userNamePost"><%= username %></span><p><%= post %></p><span id="timeStamp"><%= dt %></span><i class="fa fa-minus-circle close"></i></li>'
+  '<li class="postWrap" data-id="<%=_id%>">User:<span id="userNamePost"><%= username %></span><p><%= post %></p><span id="timeStamp"><%= dt %></span><i id="deleteButton" class="fa fa-minus-circle close"></i></li>'
 ].join("");

@@ -29,7 +29,10 @@ var page = {
     $('.input-post').on('click', '#postButton', function(event){
       event.preventDefault();
       page.addPost();
-    })
+    });
+    $('.outputs-IM').on('click', '#deleteButton', function(event){
+      event.preventDefault();
+    });
   },
 
 
@@ -107,6 +110,23 @@ loadPosts: function () {
 
 },
 
+/////////////////////////
+/// FIX THIS TOMORROW ///
+/////////////////////////
+
+  deletePost: function(event) {
+
+    $.ajax({
+      url: page.postUrl + "/" + $(this).closest('.postWrap').data('id'),
+      method: 'DELETE',
+      success: function (data) {
+        console.log(data);
+        $('.outputs-IM').html('');
+        page.loadPosts();
+      }
+    });
+  },
+
   createAccount: function (newAccount) {
 
     $.ajax({
@@ -154,5 +174,6 @@ loadPosts: function () {
   getTmpl: function (name) {
     return templates[name];
   },
+
 
 }
