@@ -9,14 +9,15 @@ var page = {
 
 
   accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyaccount',
-
+  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyposts',
 
   init: function() {
     page.initEvents();
+    page.loadPosts();
+    page.initStyles();
   },
 
   initStyles: function () {
-
   },
 
   initEvents: function() {
@@ -25,6 +26,10 @@ var page = {
       event.preventDefault();
       page.loadAccount();
     });
+    $('.input-post').on('click', '#postButton', function(event){
+      event.preventDefault();
+      page.addPost();
+    })
   },
 
 
@@ -33,9 +38,36 @@ var page = {
   //////////////////////
 
   addAccountToDOM: function (post) {
-    console.log("hello");
     page.loadAccountToPage("account", post, $('.username'));
   },
+
+  addOnePostToDOM: function (post) {
+      page.loadTmpl("posts", post, $('.outputs-IM'));
+  },
+
+  addAllPostsToDOM: function (allPosts) {
+  _.each(allPosts, page.addOnePostToDOM);
+  },
+
+
+
+loadPosts: function () {
+
+  // setInterval (function() {
+    $.ajax({
+      url: page.postUrl,
+      method: 'GET',
+      success: function (data) {
+        $('.outputs-IM').html('');
+        page.addAllPostsToDOM(data);
+      },
+      error: function (err) {
+
+      }
+    });
+  // }) ;
+
+},
 
   addAccount: function (event) {
     event.preventDefault();
@@ -47,6 +79,34 @@ var page = {
     $('input[name="user"]').val("");
     $('input[name="pass"]').val("")
   },
+
+  addPost: function (event) {
+  var newPost = {
+    post: $('#post').val(),
+    username: $('#dropdownMenu1').attr('name')
+    
+  };
+  page.createPost(newPost);
+
+  $('#post').val("");
+  },
+
+  createPost: function (newPost) {
+
+  $.ajax({
+    url: page.postUrl,
+    method: 'POST',
+    data: newPost,
+    success: function (data) {
+      page.addOnePostToDOM(data)
+      console.log("success!!: ", data);
+    },
+    error: function (err) {
+      console.log("error ", err);
+    }
+  });
+
+},
 
   createAccount: function (newAccount) {
 
@@ -80,14 +140,16 @@ var page = {
   loadTmpl: function (tmplName, data, $target) {
   var compiledTmpl = _.template(page.getTmpl(tmplName));
 
-  $target.append(compiledTmpl(data));
+  $target.prepend(compiledTmpl(data));
   },
 
   loadAccountToPage: function (tmplName, data, $target) {
     var compiledTmpl = _.template(page.getTmpl(tmplName));
     _.each(data, function (el){
+      if ($('#userNameInput').val() === el.username && $('#passwordInput').val() === el.password){
       console.log(el);
       $target.html(compiledTmpl(el));
+    }
     })
   },
 
