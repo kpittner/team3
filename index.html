@@ -18,8 +18,8 @@
       </div>
       <div class="loginWrap">
         <div class="loginScreen">
-          <form class="signupForm" id="userNameForm"><i class="fa fa-user"></i><input name="user" type="text" placeholder="Username" class="login userInput"></input></form>
-          <form class="signupForm" id="passwordForm"><i class="fa fa-unlock"></i><input name="pass" type="text" placeholder="Password" class="login passwordInput"></input></form>
+          <form class="signupForm" id="userNameForm"><i class="fa fa-user"></i><input id="userNameInput" name="user" type="text" placeholder="Username" class="login userInput"></input></form>
+          <form class="signupForm" id="passwordForm"><i class="fa fa-unlock"></i><input id="passwordInput" name="pass" type="text" placeholder="Password" class="login passwordInput"></input></form>
         </div>
         <div class="signUpWrap">
           <form><button id="logInButton" class="btn btn-default btn-md">Log In</button></form>
@@ -65,25 +65,14 @@
 <section class="messages">
   <div class="outputs">
     <ul class="outputs-IM">
-      <li><img src=""> kpittner <p>This is way cool!</p></li>
-      <li><img src=""> kpittner <p>This is so cool!</p></li>
-      <li><img src=""> kpittner <p>This is so cool!</p></li>
-      <li><img src=""> kpittner <p>This is so cool!</p></li>
-      <li><img src=""> kpittner <p>This is so cool!</p></li>
-      <li><img src=""> kpittner <p>This is so cool!</p></li>
-      <li><img src=""> kpittner <p>This is so cool!</p></li>
-      <li><img src=""> kpittner <p>This is so cool!</p></li>
-      <li><img src=""> kpittner <p>This is so cool!</p></li>
-      <li><img src=""> kpittner <p>This is so cool!</p></li>
-      <li><img src=""> kpittner <p>This is so cool!</p></li>
-      <li><img src=""> kpittner <p>This is so cool!</p></li>
+
     </ul>
   </div>
 </section>
 <div class="input-box">
   <div class="input-post">
-      <textarea name="name" placeholder="What's up jack?"></textarea>
-    <button type="button" class="btn btn-success">Shoot</button>
+      <textarea id="post" name="name" placeholder="What's up jack?"></textarea>
+    <button id="postButton" type="button" class="btn btn-success">Shoot</button>
   </div>
 </div>
 </div>
