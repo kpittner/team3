@@ -10,3 +10,7 @@ templates.account = [
   '</button>',
   '</li>'
 ].join("");
+
+templates.posts = [
+  '<li>User:<span id="userNamePost"><%= username %></span><p><%= post %></p></li>'
+].join("");
