@@ -29,7 +29,11 @@ var page = {
     $('.input-post').on('click', '#postButton', function(event){
       event.preventDefault();
       page.addPost();
-    })
+    });
+    $('.dropdown-menu').on('click', '#dropdownMenu1', function(event) {
+      event.preventDefault();
+      page.();
+    });
   },
 
 
@@ -53,7 +57,7 @@ var page = {
 
 loadPosts: function () {
 
-  // setInterval (function() {
+  setInterval (function() {
     $.ajax({
       url: page.postUrl,
       method: 'GET',
@@ -65,7 +69,7 @@ loadPosts: function () {
 
       }
     });
-  // }) ;
+   }) ;
 
 },
 
