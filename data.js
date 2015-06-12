@@ -12,5 +12,5 @@ templates.account = [
 ].join("");
 
 templates.posts = [
-  '<li>User:<span id="userNamePost"><%= username %></span><p><%= post %></p></li>'
+  '<li>User:<span id="userNamePost"><%= username %></span><p><%= post %></p><span id="timeStamp"><%= dt %></span><i class="fa fa-minus-circle close"></i></li>'
 ].join("");

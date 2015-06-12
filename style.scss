@@ -305,8 +305,10 @@ ul.username img {
   border-left: none;
   border-right: none;
   border-width: thin;
-  width: 800px;
+  width: 95%;
   border-color: rgba(72,199,172, 0.8);
+  display: inline-block;
+  position: relative;
 }
 
 .outputs-IM li img{
@@ -406,7 +408,18 @@ textarea:focus {
 }
 
 #timeStamp {
+  position: relative;
   float: right;
   margin-right: 20px;
-  margin-top: 15px;
+  bottom: 25px;
+}
+.close {
+  margin-left: 15px;
+  position: relative;
+  bottom: 22px;
+  left: 150px;
+}
+
+.close:hover {
+  color: red;
 }
