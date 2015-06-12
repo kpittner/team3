@@ -84,7 +84,6 @@ loadPosts: function () {
   var newPost = {
     post: $('#post').val(),
     username: $('#dropdownMenu1').attr('name')
-    
   };
   page.createPost(newPost);
 
