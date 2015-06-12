@@ -266,8 +266,10 @@ ul.username img {
   border-left: none;
   border-right: none;
   border-width: thin;
-  width: 800px;
-  border-color: rgba(72, 199, 172, 0.8); }
+  width: 95%;
+  border-color: rgba(72, 199, 172, 0.8);
+  display: inline-block;
+  position: relative; }
 
 .outputs-IM li img {
   margin-top: 10px;
@@ -349,5 +351,20 @@ textarea:focus {
 #textAreaInput {
   height: 100%;
   width: 100%; }
+
+#timeStamp {
+  position: relative;
+  float: right;
+  margin-right: 20px;
+  bottom: 25px; }
+
+.close {
+  margin-left: 15px;
+  position: relative;
+  bottom: 22px;
+  left: 150px; }
+
+.close:hover {
+  color: red; }
 
 /*# sourceMappingURL=style.css.map */
