@@ -29,7 +29,14 @@ var page = {
     $('.input-post').on('click', '#postButton', function(event){
       event.preventDefault();
       page.addPost();
-    })
+    });
+    $('.outputs-IM').on('click', '#deleteButton', function(event){
+      var postId = $(this).closest('.postWrap').data('id');
+      console.log(postId);
+      if ($('#dropdownMenu1').attr('name') === $('#userNamePost').html()) {
+      page.deletePost(postId);
+      }
+    });
   },
 
 
@@ -107,6 +114,23 @@ loadPosts: function () {
 
 },
 
+/////////////////////////
+/// FIX THIS TOMORROW ///
+/////////////////////////
+
+  deletePost: function(postId) {
+    $.ajax({
+      url: page.postUrl + "/" + postId,
+      method: 'DELETE',
+      success: function (data) {
+        console.log(page.postUrl + "/" + $(this).closest('.postWrap').data('id'));
+        console.log(data);
+        $('.outputs-IM').html('');
+        page.loadPosts();
+      }
+    });
+  },
+
   createAccount: function (newAccount) {
 
     $.ajax({
@@ -154,5 +178,6 @@ loadPosts: function () {
   getTmpl: function (name) {
     return templates[name];
   },
+
 
 }
