@@ -9,7 +9,7 @@ var page = {
 
 
   accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyaccount',
-  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathypost',
+  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathy_post',
 
   init: function() {
     page.initEvents();
@@ -30,7 +30,6 @@ var page = {
       event.preventDefault();
       page.addPost();
     });
-
     $('.outputs-IM').on('click', '#deleteButton', function(event){
       var postId = $(this).closest('.postWrap').data('id');
       console.log(postId);
@@ -38,7 +37,6 @@ var page = {
       page.deletePost(postId);
       }
     });
-
   },
 
 
@@ -57,6 +55,8 @@ var page = {
   addAllPostsToDOM: function (allPosts) {
   _.each(allPosts, page.addOnePostToDOM);
   },
+
+
 
 loadPosts: function () {
 
@@ -96,15 +96,6 @@ loadPosts: function () {
   page.createPost(newPost);
   $('#post').val("");
   },
-
-  //exitUser: function (event) {
-  //  var exit= function(){
-    //$.post('post.url', null, function(data) {
-   //handle successful logout
-//});
-
-  //};
-},
 
   createPost: function (newPost) {
 
@@ -169,11 +160,11 @@ loadPosts: function () {
     });
   },
 
-
   loadTmpl: function (tmplName, data, $target) {
   var compiledTmpl = _.template(page.getTmpl(tmplName));
 
   $target.prepend(compiledTmpl(data));
+
   },
 
   loadAccountToPage: function (tmplName, data, $target) {
