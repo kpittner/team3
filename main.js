@@ -1,4 +1,7 @@
 
+var accountData;
+var array = [];
+
 $(document).ready (function() {
   page.init();
 
@@ -9,20 +12,30 @@ $(document).ready (function() {
 var page = {
 
 
-  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyaccount',
-  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chatty_cathy_post',
+  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chatty_cathys_accounts',
+  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chatty_cathys_post',
 
   init: function() {
     page.initEvents();
     page.loadPosts();
     page.initStyles();
+    page.getAccounts();
+    page.loadAccountStatus();
   },
 
   initStyles: function () {
   },
 
   initEvents: function() {
-    $('.signUpWrap').on('click', "#signUpButton", page.addAccount);
+    $('.signUpWrap').on('click', "#signUpButton", function(event) {
+      event.preventDefault();
+      var inputUserName = $('input[name="user"]').val();
+      var inputPassword = $('input[name="pass"]').val();
+      if(_.contains(array, inputUserName) !== true && inputPassword.length >= 6) {
+          page.addAccount();
+          page.getAccounts();
+        }
+      });
     $('.signUpWrap').on('click', "#logInButton", function(event) {
       event.preventDefault();
       page.loadAccount();
@@ -49,8 +62,12 @@ var page = {
     page.loadAccountToPage("account", post, $('.username'));
   },
 
+  addAccountStatus: function (post) {
+    page.loadTmplStatus("userStatus", post, $('.individUser'));
+  },
+
   addOnePostToDOM: function (post) {
-      page.loadTmpl("posts", post, $('.outputs-IM'));
+    page.loadTmpl("posts", post, $('.outputs-IM'));
   },
 
   addAllPostsToDOM: function (allPosts) {
@@ -78,7 +95,6 @@ loadPosts: function () {
 },
 
   addAccount: function (event) {
-    event.preventDefault();
     var newAccount = {
         username: $('input[name="user"]').val(),
         password: $('input[name="pass"]').val(),
@@ -115,10 +131,6 @@ loadPosts: function () {
 
 },
 
-/////////////////////////
-/// FIX THIS TOMORROW ///
-/////////////////////////
-
   deletePost: function(postId) {
     $.ajax({
       url: page.postUrl + "/" + postId,
@@ -133,7 +145,6 @@ loadPosts: function () {
   },
 
   createAccount: function (newAccount) {
-
     $.ajax({
       url: page.accountUrl,
       method: 'POST',
@@ -154,6 +165,38 @@ loadPosts: function () {
       method: 'GET',
       success: function (data) {
         page.addAccountToDOM(data);
+        $('input[name="user"]').val("");
+        $('input[name="pass"]').val("");
+      },
+      error: function (err) {
+
+      }
+    });
+  },
+
+  loadAccountStatus: function(event) {
+    $.ajax({
+      url: page.accountUrl,
+      method: 'GET',
+      success: function (data) {
+        page.addAccountStatus(data);
+      },
+      error: function (err) {
+
+      }
+    });
+  },
+
+  getAccounts: function(event) {
+    $.ajax({
+      url: page.accountUrl,
+      method: 'GET',
+      success: function (data) {
+        accountData = data;
+        array = [];
+        _.each(accountData, function(el){
+              array.push(el.username);
+            });
       },
       error: function (err) {
 
@@ -167,6 +210,18 @@ loadPosts: function () {
   $target.prepend(compiledTmpl(data));
 
   },
+
+  loadTmplStatus: function (tmplName, data, $target) {
+  var compiledTmpl = _.template(page.getTmpl(tmplName));
+  console.log(data);
+  console.log('I maybe possibly am working')
+
+  _.each(data, function (el) {
+    $target.append(compiledTmpl(el));
+  });
+
+  },
+
 
   loadAccountToPage: function (tmplName, data, $target) {
     var compiledTmpl = _.template(page.getTmpl(tmplName));
