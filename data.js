@@ -15,3 +15,10 @@ templates.account = [
 templates.posts = [
   '<li class="postWrap" data-id="<%= _id %>">User: <span id="userNamePost"><%= username %></span><p><%= post %></p><span id="timeStamp"><%= dt %></span><i id="deleteButton" class="fa fa-minus-circle close"></i></li>'
 ].join("");
+
+templates.userStatus = [
+  '<div class= "statusWrap">',
+  '<i class="fa fa-coffee"></i>',
+  '<span class="online-users"><%= username %></span>',
+  '</div>'
+].join("");
