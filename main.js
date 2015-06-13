@@ -8,7 +8,7 @@ var page = {
 
 
   accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyaccount',
-
+  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathy_post',
 
   init: function() {
     page.initEvents();
