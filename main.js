@@ -1,4 +1,3 @@
-
 $(document).ready (function() {
   page.init();
 });
@@ -9,7 +8,7 @@ var page = {
 
 
   accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyaccount',
-  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathypost',
+  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chatty_cathypost',
 
   init: function() {
     page.initEvents();
@@ -30,7 +29,12 @@ var page = {
       event.preventDefault();
       page.addPost();
     });
-
+    $('.outputs-IM').on('click', '#deleteButton', function(event){
+      var postId = $(this).closest('.postWrap').data('id');
+      console.log(postId);
+      if ($('#dropdownMenu1').attr('name') === $('#userNamePost').html()) {
+      page.deletePost(postId);
+      }
     });
   },
 
@@ -55,7 +59,7 @@ var page = {
 
 loadPosts: function () {
 
-  setInterval (function() {
+  // setInterval (function() {
     $.ajax({
       url: page.postUrl,
       method: 'GET',
@@ -67,7 +71,7 @@ loadPosts: function () {
 
       }
     });
-   }) ;
+  // }) ;
 
 },
 

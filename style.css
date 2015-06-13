@@ -209,7 +209,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   border-style: ridge;
   border-color: rgba(244, 236, 239, 0.8);
   border-radius: 10px;
-  background-color: rgba(244, 236, 239, 0.8); }
+  background-color: rgba(244, 236, 239, 0.8);}
 
 .user {
   margin-right: 10px;
@@ -291,10 +291,21 @@ textarea {
   vertical-align: top;
   padding: 20px;
   overflow: scroll;
-  resize: none; }
+  resize: none;
+  font-family: 'Satisfy', cursive;}
 
 textarea:focus {
   outline: none; }
+
+.postWrap p {
+  font-family: 'Satisfy', cursive;
+  font-size: 1.5em;
+}
+
+.postWrap {
+  font-family: 'Satisfy', cursive;
+  font-size: 1em;
+}
 
 .btn-success {
   margin-right: 10px;
