@@ -8,7 +8,7 @@ var page = {
 
 
   accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyaccount',
-  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathy_post',
+  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chatty_cathy_post',
 
   init: function() {
     page.initEvents();
@@ -36,6 +36,22 @@ var page = {
       page.deletePost(postId);
       }
     });
+    $(function () {
+    $('.click-nav > ul').toggleClass('no-js js');
+    $('.click-nav .js ul').hide();
+    $('.click-nav .js').click(function(e) {
+      $('.click-nav .js ul').slideToggle(200);
+      $('.clicker').toggleClass('active');
+      e.stopPropagation();
+      e.preventDefault();
+    });
+    $(document).click(function() {
+      if ($('.click-nav .js ul').is(':visible')) {
+        $('.click-nav .js ul', this).slideUp();
+        $('.clicker').removeClass('active');
+      }
+    });
+  });
   },
 
 
@@ -44,7 +60,7 @@ var page = {
   //////////////////////
 
   addAccountToDOM: function (post) {
-    page.loadAccountToPage("account", post, $('.username'));
+    page.loadAccountToPage("account", post, $('.click-nav'));
   },
 
   addOnePostToDOM: function (post) {
