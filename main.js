@@ -9,7 +9,7 @@ var page = {
 
 
   accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyaccount',
-  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathy_post',
+  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathypost',
 
   init: function() {
     page.initEvents();
@@ -174,7 +174,6 @@ loadPosts: function () {
   var compiledTmpl = _.template(page.getTmpl(tmplName));
 
   $target.prepend(compiledTmpl(data));
-
   },
 
   loadAccountToPage: function (tmplName, data, $target) {
