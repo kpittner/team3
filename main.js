@@ -1,6 +1,7 @@
 
 $(document).ready (function() {
   page.init();
+
 });
 
 
@@ -9,7 +10,7 @@ var page = {
 
 
   accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyaccount',
-  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathy_post',
+  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chatty_cathy_post',
 
   init: function() {
     page.initEvents();
