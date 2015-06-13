@@ -30,9 +30,7 @@ var page = {
       event.preventDefault();
       page.addPost();
     });
-    $('.dropdown-menu').on('click', '#dropdownMenu1', function(event) {
-      event.preventDefault();
-      page.();
+
     });
   },
 
@@ -111,6 +109,23 @@ loadPosts: function () {
 
 },
 
+/////////////////////////
+/// FIX THIS TOMORROW ///
+/////////////////////////
+
+  deletePost: function(postId) {
+    $.ajax({
+      url: page.postUrl + "/" + postId,
+      method: 'DELETE',
+      success: function (data) {
+        console.log(page.postUrl + "/" + $(this).closest('.postWrap').data('id'));
+        console.log(data);
+        $('.outputs-IM').html('');
+        page.loadPosts();
+      }
+    });
+  },
+
   createAccount: function (newAccount) {
 
     $.ajax({
@@ -158,5 +173,6 @@ loadPosts: function () {
   getTmpl: function (name) {
     return templates[name];
   },
+
 
 }
