@@ -31,7 +31,11 @@ var page = {
       page.addPost();
     });
     $('.outputs-IM').on('click', '#deleteButton', function(event){
-      event.preventDefault();
+      var postId = $(this).closest('.postWrap').data('id');
+      console.log(postId);
+      if ($('#dropdownMenu1').attr('name') === $('#userNamePost').html()) {
+      page.deletePost(postId);
+      }
     });
   },
 
@@ -114,12 +118,12 @@ loadPosts: function () {
 /// FIX THIS TOMORROW ///
 /////////////////////////
 
-  deletePost: function(event) {
-
+  deletePost: function(postId) {
     $.ajax({
-      url: page.postUrl + "/" + $(this).closest('.postWrap').data('id'),
+      url: page.postUrl + "/" + postId,
       method: 'DELETE',
       success: function (data) {
+        console.log(page.postUrl + "/" + $(this).closest('.postWrap').data('id'));
         console.log(data);
         $('.outputs-IM').html('');
         page.loadPosts();
