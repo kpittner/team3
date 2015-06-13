@@ -29,7 +29,8 @@ var page = {
     $('.input-post').on('click', '#postButton', function(event){
       event.preventDefault();
       page.addPost();
-    })
+    });
+  
   },
 
 
@@ -48,8 +49,6 @@ var page = {
   addAllPostsToDOM: function (allPosts) {
   _.each(allPosts, page.addOnePostToDOM);
   },
-
-
 
 loadPosts: function () {
 
@@ -89,6 +88,15 @@ loadPosts: function () {
   page.createPost(newPost);
   $('#post').val("");
   },
+
+  //exitUser: function (event) {
+  //  var exit= function(){
+    //$.post('post.url', null, function(data) {
+   //handle successful logout
+//});
+
+  //};
+},
 
   createPost: function (newPost) {
 
@@ -135,6 +143,7 @@ loadPosts: function () {
       }
     });
   },
+
 
   loadTmpl: function (tmplName, data, $target) {
   var compiledTmpl = _.template(page.getTmpl(tmplName));

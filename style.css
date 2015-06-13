@@ -367,4 +367,10 @@ textarea:focus {
 .close:hover {
   color: red; }
 
+#exitChat {
+  margin-left:65px;
+  color: white;
+  background-color: rgba(200, 199, 172, 0.8);
+}
+
 /*# sourceMappingURL=style.css.map */
