@@ -51,6 +51,22 @@ var page = {
       page.deletePost(postId);
       }
     });
+    $(function () {
+    $('.click-nav > ul').toggleClass('no-js js');
+    $('.click-nav .js ul').hide();
+    $('.click-nav .js').click(function(e) {
+      $('.click-nav .js ul').slideToggle(200);
+      $('.clicker').toggleClass('active');
+      e.stopPropagation();
+      e.preventDefault();
+    });
+    $(document).click(function() {
+      if ($('.click-nav .js ul').is(':visible')) {
+        $('.click-nav .js ul', this).slideUp();
+        $('.clicker').removeClass('active');
+      }
+    });
+  });
   },
 
 
@@ -59,7 +75,7 @@ var page = {
   //////////////////////
 
   addAccountToDOM: function (post) {
-    page.loadAccountToPage("account", post, $('.username'));
+    page.loadAccountToPage("account", post, $('.click-nav'));
   },
 
   addAccountStatus: function (post) {

@@ -209,7 +209,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   border-style: ridge;
   border-color: rgba(244, 236, 239, 0.8);
   border-radius: 10px;
-  background-color: rgba(244, 236, 239, 0.8); }
+  background-color: rgba(244, 236, 239, 0.8);}
 
 .user {
   margin-right: 10px;
@@ -241,19 +241,9 @@ ul.username img {
   vertical-align: middle;
   padding-bottom: 5px; }
 
-.dropdown-toggle {
-  border: none;
-  background-color: rgba(72, 199, 172, 0.8);
-  color: #EDF2F2; }
-
-.dropdown-toggle:hover {
-  border: none;
-  background-color: rgba(72, 199, 172, 0.8);
-  color: #EDF2F2; }
-
 .outputs {
   height: 100%;
-  width: 100%; }
+  width: 100%;}
 
 .outputs-IM {
   height: 100%;
@@ -291,10 +281,21 @@ textarea {
   vertical-align: top;
   padding: 20px;
   overflow: scroll;
-  resize: none; }
+  resize: none;
+  font-family: 'Satisfy', cursive;}
 
 textarea:focus {
   outline: none; }
+
+.postWrap p {
+  font-family: 'Satisfy', cursive;
+  font-size: 1.5em;
+}
+
+.postWrap {
+  font-family: 'Satisfy', cursive;
+  font-size: 1em;
+}
 
 .btn-success {
   margin-right: 10px;
@@ -373,3 +374,64 @@ textarea:focus {
   border-bottom: 1px solid white; }
 
 /*# sourceMappingURL=style.css.map */
+
+.click-nav {
+  margin:0 auto;
+  width:200px;
+  float: right;
+  margin-right: 10px;
+}
+
+.click-nav ul {
+  float: right;
+  font-weight:900;
+}
+
+.submenu {
+  z-index: 100;
+}
+
+.click-nav ul li {
+  list-style:none;
+  cursor:pointer;
+  float: right;
+  width: 150px;
+}
+
+.click-nav ul li ul {
+  left:0;
+  right:0;
+  display: block;
+}
+
+.click-nav ul .clicker {
+  background:rgba(72, 199, 172, 0.8);
+  color:#EDF2F2;
+}
+
+.click-nav ul .clicker:hover,.click-nav ul .active {
+  background:rgba(72, 199, 172, 0.8);
+  color: #EDF2F2;
+}
+
+.click-nav ul li a {
+  transition:background-color 0.2s ease-in-out;
+  -webkit-transition:background-color 0.2s ease-in-out;
+  -moz-transition:background-color 0.2s ease-in-out;
+  display:block;padding:8px 10px 8px 40px;
+  background:#FFF;
+  color:#333;
+  text-decoration:none;
+}
+
+.click-nav ul li a:hover {
+  background:#F2F2F2;
+}
+
+.click-nav .no-js ul {
+  display:none;
+}
+
+.click-nav .no-js:hover ul {
+  display:block;
+}
