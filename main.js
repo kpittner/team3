@@ -13,7 +13,7 @@ var page = {
 
 
   accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chatty_cathys_accounts',
-  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chatty_cathys_post',
+  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattys_cathys_postss',
 
   init: function() {
     page.initEvents();
@@ -46,7 +46,6 @@ var page = {
     });
     $('.outputs-IM').on('click', '#deleteButton', function(event){
       var postId = $(this).closest('.postWrap').data('id');
-      console.log(postId);
       if ($('#dropdownMenu1').attr('name') === $('#userNamePost').html()) {
       page.deletePost(postId);
       }
@@ -99,8 +98,9 @@ loadPosts: function () {
       url: page.postUrl,
       method: 'GET',
       success: function (data) {
+        var sortedPosts = _.sortBy(data, "dt");
         $('.outputs-IM').html('');
-        page.addAllPostsToDOM(data);
+        page.addAllPostsToDOM(sortedPosts);
       },
       error: function (err) {
 
@@ -124,7 +124,7 @@ loadPosts: function () {
   var newPost = {
     post: $('#post').val(),
     username: $('#dropdownMenu1').attr('name'),
-    dt: moment().format('MMMM Do, h:mm a')
+    dt: moment().format('MMMM Do, h:mm:ss a')
   };
   page.createPost(newPost);
   $('#post').val("");
@@ -152,8 +152,6 @@ loadPosts: function () {
       url: page.postUrl + "/" + postId,
       method: 'DELETE',
       success: function (data) {
-        console.log(page.postUrl + "/" + $(this).closest('.postWrap').data('id'));
-        console.log(data);
         $('.outputs-IM').html('');
         page.loadPosts();
       }
@@ -223,14 +221,12 @@ loadPosts: function () {
   loadTmpl: function (tmplName, data, $target) {
   var compiledTmpl = _.template(page.getTmpl(tmplName));
 
-  $target.prepend(compiledTmpl(data));
+  $target.append(compiledTmpl(data));
 
   },
 
   loadTmplStatus: function (tmplName, data, $target) {
   var compiledTmpl = _.template(page.getTmpl(tmplName));
-  console.log(data);
-  console.log('I maybe possibly am working')
 
   _.each(data, function (el) {
     $target.append(compiledTmpl(el));
