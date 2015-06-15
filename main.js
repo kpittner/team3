@@ -50,22 +50,28 @@ var page = {
       page.deletePost(postId);
       }
     });
-    $(function () {
-    $('.click-nav > ul').toggleClass('no-js js');
-    $('.click-nav .js ul').hide();
-    $('.click-nav .js').click(function(e) {
-      $('.click-nav .js ul').slideToggle(200);
-      $('.clicker').toggleClass('active');
-      e.stopPropagation();
-      e.preventDefault();
+
+    $('.click-nav').on('click', '.changeName', function(event) {
+      event.preventDefault();
+      console.log('hello');
+        var userNameChange = window.prompt("What should we call you?");
+        if (userNameChange === null) {
+          window.alert("Uhhh...you have to type something...this is totes awk");
+        } else {
+          $('.dropdown-toggle').text(userNameChange);
+        }
+        page.accountChangeClick(userNameChange);
+        $('#dropdownMenu1').attr('name', userNameChange);
     });
-    $(document).click(function() {
-      if ($('.click-nav .js ul').is(':visible')) {
-        $('.click-nav .js ul', this).slideUp();
-        $('.clicker').removeClass('active');
-      }
+
+    $('.click-nav').on('click', '.logOut', function(event) {
+      event.preventDefault();
+      console.log('hello');
+      $('.pageWrapper').removeClass('hidden');
+      $('.contentWrap').addClass('hidden');
     });
-  });
+
+
   },
 
 
@@ -107,6 +113,31 @@ loadPosts: function () {
       }
     });
   // }) ;
+
+},
+
+accountChangeClick: function(nameChange) {
+  var accountId = $('.dropdown').data('id');
+  var updatedAccount = {
+   username: nameChange
+  };
+
+  page.changeAccount(updatedAccount, accountId);
+},
+
+changeAccount: function (accountData, accountId ) {
+
+$.ajax({
+  url: page.accountUrl + '/' + accountId,
+  method: 'PUT',
+  data: accountData,
+  success: function (accountData) {
+    console.log('account Changed');
+    window.alert('Success! Hope you like your new name!')
+  },
+  error: function (err) {
+  }
+  })
 
 },
 
@@ -240,6 +271,8 @@ loadPosts: function () {
     _.each(data, function (el){
       if ($('#userNameInput').val() === el.username && $('#passwordInput').val() === el.password){
       $target.html(compiledTmpl(el));
+      $('.pageWrapper').addClass('hidden');
+      $('.contentWrap').removeClass('hidden');
     }
     })
   },
