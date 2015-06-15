@@ -209,7 +209,7 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   border-style: ridge;
   border-color: rgba(244, 236, 239, 0.8);
   border-radius: 10px;
-  background-color: rgba(244, 236, 239, 0.8);}
+  background-color: rgba(244, 236, 239, 0.8); }
 
 .user {
   margin-right: 10px;
@@ -259,7 +259,8 @@ ul.username img {
   width: 95%;
   border-color: rgba(72, 199, 172, 0.8);
   display: inline-block;
-  position: relative; }
+  position: relative;
+  z-index: 90; }
 
 .outputs-IM li img {
   margin-top: 10px;
@@ -383,7 +384,7 @@ textarea:focus {
 }
 
 .submenu {
-  z-index: 100;
+  z-index: 999;
 }
 
 .click-nav ul li {
