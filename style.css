@@ -9,13 +9,20 @@ body {
 p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   font-family: 'Open Sans', sans-serif; }
 
+.hidden {
+  display: none; }
+
 .pageWrapper {
   margin: 0 auto;
   width: 100%;
   height: 100%;
   background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url("images/1950s.jpg");
   background-position: 50% 15%;
+  display: block;
   background-size: 1800px 2214px; }
+
+.contentWrap {
+  display: block; }
 
 .contentWidth {
   margin: 0 auto;
@@ -211,6 +218,16 @@ p, h1, h2, h3, h4, h5, a, li, ul, span, button, form {
   border-radius: 10px;
   background-color: rgba(244, 236, 239, 0.8); }
 
+.dropdown {
+  height: 100%;
+  width: 20%;
+  float: right;
+  margin-top: 10px;
+  margin-right: 10px; }
+
+.btn-default {
+  float: right; }
+
 .user {
   margin-right: 10px;
   margin-top: 20px;
@@ -277,7 +294,8 @@ ul.username img {
   width: 40px; }
 
 .outputs-IM p {
-  margin-left: 5em; }
+  margin-left: 5em;
+  margin-top: 10px; }
 
 textarea {
   width: 80%;
@@ -295,6 +313,9 @@ textarea {
 
 textarea:focus {
   outline: none; }
+
+.navIcon {
+  margin-right: 5px; }
 
 .btn-success {
   margin-right: 10px;
@@ -362,7 +383,7 @@ textarea:focus {
   margin-left: 15px;
   position: relative;
   bottom: 22px;
-  left: 150px; }
+  left: 180px; }
 
 .close:hover {
   color: red; }
@@ -371,5 +392,9 @@ textarea:focus {
   width: 100%;
   height: 50px;
   border-bottom: 1px solid white; }
+
+.contentWrap {
+  height: 100%;
+  width: 100%; }
 
 /*# sourceMappingURL=style.css.map */
