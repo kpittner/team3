@@ -1,10 +1,10 @@
 
 var accountData;
 var array = [];
+var accountIdNumber;
 
 $(document).ready (function() {
   page.init();
-
 });
 
 
@@ -12,7 +12,7 @@ $(document).ready (function() {
 var page = {
 
 
-  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chatty_cathys_accounts',
+  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattys_cathys_accounts',
   postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattys_cathys_postss',
 
   init: function() {
@@ -20,7 +20,36 @@ var page = {
     page.loadPosts();
     page.initStyles();
     page.getAccounts();
-    page.loadAccountStatus();
+
+    setInterval (function() {
+      $.ajax({
+        url: page.postUrl,
+        method: 'GET',
+        success: function (data) {
+          var sortedPosts = _.sortBy(data, "dt");
+          $('.outputs-IM').html('');
+          page.addAllPostsToDOM(sortedPosts);
+        },
+        error: function (err) {
+
+        }
+      });
+    }, 2000);
+
+    setInterval (function() {
+        $.ajax({
+          url: page.accountUrl,
+          method: 'GET',
+          success: function (data) {
+            $('.individUser').html('');
+            page.addAccountStatus(data);
+          },
+          error: function (err) {
+
+          }
+        });
+    }, 2000);
+
   },
 
   initStyles: function () {
@@ -34,6 +63,8 @@ var page = {
       if(_.contains(array, inputUserName) !== true && inputPassword.length >= 6) {
           page.addAccount();
           page.getAccounts();
+        } else {
+          alert("Account already taken");
         }
       });
     $('.signUpWrap').on('click', "#logInButton", function(event) {
@@ -53,7 +84,6 @@ var page = {
 
     $('.click-nav').on('click', '.changeName', function(event) {
       event.preventDefault();
-      console.log('hello');
         var userNameChange = window.prompt("What should we call you?");
         if (userNameChange === null) {
           window.alert("Uhhh...you have to type something...this is totes awk");
@@ -66,7 +96,7 @@ var page = {
 
     $('.click-nav').on('click', '.logOut', function(event) {
       event.preventDefault();
-      console.log('hello');
+      page.changeStatusOffline(accountIdNumber);
       $('.pageWrapper').removeClass('hidden');
       $('.contentWrap').addClass('hidden');
     });
@@ -99,7 +129,6 @@ var page = {
 
 loadPosts: function () {
 
-  // setInterval (function() {
     $.ajax({
       url: page.postUrl,
       method: 'GET',
@@ -112,17 +141,16 @@ loadPosts: function () {
 
       }
     });
-  // }) ;
 
 },
 
 accountChangeClick: function(nameChange) {
-  var accountId = $('.dropdown').data('id');
+  accountIdNumber = $('.dropdown').data('id');
   var updatedAccount = {
    username: nameChange
   };
 
-  page.changeAccount(updatedAccount, accountId);
+  page.changeAccount(updatedAccount, accountIdNumber);
 },
 
 changeAccount: function (accountData, accountId ) {
@@ -141,10 +169,57 @@ $.ajax({
 
 },
 
+changeAccountStatus: function (updatedAccount, accountId ) {
+
+$.ajax({
+  url: page.accountUrl + '/' + accountId,
+  method: 'PUT',
+  data: updatedAccount,
+  success: function (accountData) {
+  },
+  error: function (err) {
+  }
+  })
+
+},
+
+changeAccountStatusOffline: function (updatedAccount, accountId ) {
+
+$.ajax({
+  url: page.accountUrl + '/' + accountId,
+  method: 'PUT',
+  data: updatedAccount,
+  success: function (accountData) {
+  },
+  error: function (err) {
+  }
+  })
+
+},
+
+changeStatusOffline: function(insertedId) {
+  var accountId = insertedId;
+  var updatedAccount = {
+   login: 'no'
+  };
+
+  page.changeAccountStatus(updatedAccount, accountId);
+},
+
+changeStatus: function(insertedId) {
+  var accountId = insertedId;
+  var updatedAccount = {
+   login: 'yes'
+  };
+
+  page.changeAccountStatus(updatedAccount, accountId);
+},
+
   addAccount: function (event) {
     var newAccount = {
         username: $('input[name="user"]').val(),
         password: $('input[name="pass"]').val(),
+        login: 'no'
       };
     page.createAccount(newAccount);
     $('input[name="user"]').val("");
@@ -219,19 +294,6 @@ $.ajax({
     });
   },
 
-  loadAccountStatus: function(event) {
-    $.ajax({
-      url: page.accountUrl,
-      method: 'GET',
-      success: function (data) {
-        page.addAccountStatus(data);
-      },
-      error: function (err) {
-
-      }
-    });
-  },
-
   getAccounts: function(event) {
     $.ajax({
       url: page.accountUrl,
@@ -273,6 +335,8 @@ $.ajax({
       $target.html(compiledTmpl(el));
       $('.pageWrapper').addClass('hidden');
       $('.contentWrap').removeClass('hidden');
+      accountIdNumber = $('.dropdown').data('id')
+      page.changeStatus(accountIdNumber);
     }
     })
   },
