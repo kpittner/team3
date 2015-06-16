@@ -5,9 +5,6 @@ var accountIdNumber;
 
 $(document).ready (function() {
   page.init();
-  $(window).unload(function() {
-    return page.changeStatusOffline(accountIdNumber);
-  });
 });
 
 
@@ -87,7 +84,6 @@ var page = {
 
     $('.click-nav').on('click', '.changeName', function(event) {
       event.preventDefault();
-      console.log('hello');
         var userNameChange = window.prompt("What should we call you?");
         if (userNameChange === null) {
           window.alert("Uhhh...you have to type something...this is totes awk");
@@ -100,7 +96,6 @@ var page = {
 
     $('.click-nav').on('click', '.logOut', function(event) {
       event.preventDefault();
-      console.log('hello');
       page.changeStatusOffline(accountIdNumber);
       $('.pageWrapper').removeClass('hidden');
       $('.contentWrap').addClass('hidden');
