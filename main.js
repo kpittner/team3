@@ -1,3 +1,6 @@
+var accountData;
+var array = [];
+
 $(document).ready (function() {
   page.init();
 
@@ -8,20 +11,30 @@ $(document).ready (function() {
 var page = {
 
 
-  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattycathyaccount',
-  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chatty_cathy_post',
+  accountUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chatty_cathys_accounts',
+  postUrl: 'http://tiy-fee-rest.herokuapp.com/collections/chattys_cathys_postss',
 
   init: function() {
     page.initEvents();
     page.loadPosts();
     page.initStyles();
+    page.getAccounts();
+    page.loadAccountStatus();
   },
 
   initStyles: function () {
   },
 
   initEvents: function() {
-    $('.signUpWrap').on('click', "#signUpButton", page.addAccount);
+    $('.signUpWrap').on('click', "#signUpButton", function(event) {
+      event.preventDefault();
+      var inputUserName = $('input[name="user"]').val();
+      var inputPassword = $('input[name="pass"]').val();
+      if(_.contains(array, inputUserName) !== true && inputPassword.length >= 6) {
+          page.addAccount();
+          page.getAccounts();
+        }
+      });
     $('.signUpWrap').on('click', "#logInButton", function(event) {
       event.preventDefault();
       page.loadAccount();
@@ -32,27 +45,32 @@ var page = {
     });
     $('.outputs-IM').on('click', '#deleteButton', function(event){
       var postId = $(this).closest('.postWrap').data('id');
-      console.log(postId);
       if ($('#dropdownMenu1').attr('name') === $('#userNamePost').html()) {
       page.deletePost(postId);
       }
     });
-    $(function () {
-    $('.click-nav > ul').toggleClass('no-js js');
-    $('.click-nav .js ul').hide();
-    $('.click-nav .js').click(function(e) {
-      $('.click-nav .js ul').slideToggle(200);
-      $('.clicker').toggleClass('active');
-      e.stopPropagation();
-      e.preventDefault();
+
+    $('.click-nav').on('click', '.changeName', function(event) {
+      event.preventDefault();
+      console.log('hello');
+        var userNameChange = window.prompt("What should we call you?");
+        if (userNameChange === null) {
+          window.alert("Uhhh...you have to type something...this is totes awk");
+        } else {
+          $('.dropdown-toggle').text(userNameChange);
+        }
+        page.accountChangeClick(userNameChange);
+        $('#dropdownMenu1').attr('name', userNameChange);
     });
-    $(document).click(function() {
-      if ($('.click-nav .js ul').is(':visible')) {
-        $('.click-nav .js ul', this).slideUp();
-        $('.clicker').removeClass('active');
-      }
+
+    $('.click-nav').on('click', '.logOut', function(event) {
+      event.preventDefault();
+      console.log('hello');
+      $('.pageWrapper').removeClass('hidden');
+      $('.contentWrap').addClass('hidden');
     });
-  });
+
+
   },
 
 
@@ -64,8 +82,12 @@ var page = {
     page.loadAccountToPage("account", post, $('.click-nav'));
   },
 
+  addAccountStatus: function (post) {
+    page.loadTmplStatus("userStatus", post, $('.individUser'));
+  },
+
   addOnePostToDOM: function (post) {
-      page.loadTmpl("posts", post, $('.outputs-IM'));
+    page.loadTmpl("posts", post, $('.outputs-IM'));
   },
 
   addAllPostsToDOM: function (allPosts) {
@@ -81,8 +103,9 @@ loadPosts: function () {
       url: page.postUrl,
       method: 'GET',
       success: function (data) {
+        var sortedPosts = _.sortBy(data, "dt");
         $('.outputs-IM').html('');
-        page.addAllPostsToDOM(data);
+        page.addAllPostsToDOM(sortedPosts);
       },
       error: function (err) {
 
@@ -92,8 +115,32 @@ loadPosts: function () {
 
 },
 
+accountChangeClick: function(nameChange) {
+  var accountId = $('.dropdown').data('id');
+  var updatedAccount = {
+   username: nameChange
+  };
+
+  page.changeAccount(updatedAccount, accountId);
+},
+
+changeAccount: function (accountData, accountId ) {
+
+$.ajax({
+  url: page.accountUrl + '/' + accountId,
+  method: 'PUT',
+  data: accountData,
+  success: function (accountData) {
+    console.log('account Changed');
+    window.alert('Success! Hope you like your new name!')
+  },
+  error: function (err) {
+  }
+  })
+
+},
+
   addAccount: function (event) {
-    event.preventDefault();
     var newAccount = {
         username: $('input[name="user"]').val(),
         password: $('input[name="pass"]').val(),
@@ -107,7 +154,7 @@ loadPosts: function () {
   var newPost = {
     post: $('#post').val(),
     username: $('#dropdownMenu1').attr('name'),
-    dt: moment().format('MMMM Do, h:mm a')
+    dt: moment().format('MMMM Do, h:mm:ss a')
   };
   page.createPost(newPost);
   $('#post').val("");
@@ -130,17 +177,11 @@ loadPosts: function () {
 
 },
 
-/////////////////////////
-/// FIX THIS TOMORROW ///
-/////////////////////////
-
   deletePost: function(postId) {
     $.ajax({
       url: page.postUrl + "/" + postId,
       method: 'DELETE',
       success: function (data) {
-        console.log(page.postUrl + "/" + $(this).closest('.postWrap').data('id'));
-        console.log(data);
         $('.outputs-IM').html('');
         page.loadPosts();
       }
@@ -148,7 +189,6 @@ loadPosts: function () {
   },
 
   createAccount: function (newAccount) {
-
     $.ajax({
       url: page.accountUrl,
       method: 'POST',
@@ -169,6 +209,38 @@ loadPosts: function () {
       method: 'GET',
       success: function (data) {
         page.addAccountToDOM(data);
+        $('input[name="user"]').val("");
+        $('input[name="pass"]').val("");
+      },
+      error: function (err) {
+
+      }
+    });
+  },
+
+  loadAccountStatus: function(event) {
+    $.ajax({
+      url: page.accountUrl,
+      method: 'GET',
+      success: function (data) {
+        page.addAccountStatus(data);
+      },
+      error: function (err) {
+
+      }
+    });
+  },
+
+  getAccounts: function(event) {
+    $.ajax({
+      url: page.accountUrl,
+      method: 'GET',
+      success: function (data) {
+        accountData = data;
+        array = [];
+        _.each(accountData, function(el){
+              array.push(el.username);
+            });
       },
       error: function (err) {
 
@@ -179,15 +251,27 @@ loadPosts: function () {
   loadTmpl: function (tmplName, data, $target) {
   var compiledTmpl = _.template(page.getTmpl(tmplName));
 
-  $target.prepend(compiledTmpl(data));
+  $target.append(compiledTmpl(data));
 
   },
+
+  loadTmplStatus: function (tmplName, data, $target) {
+  var compiledTmpl = _.template(page.getTmpl(tmplName));
+
+  _.each(data, function (el) {
+    $target.append(compiledTmpl(el));
+  });
+
+  },
+
 
   loadAccountToPage: function (tmplName, data, $target) {
     var compiledTmpl = _.template(page.getTmpl(tmplName));
     _.each(data, function (el){
       if ($('#userNameInput').val() === el.username && $('#passwordInput').val() === el.password){
       $target.html(compiledTmpl(el));
+      $('.pageWrapper').addClass('hidden');
+      $('.contentWrap').removeClass('hidden');
     }
     })
   },

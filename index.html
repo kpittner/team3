@@ -19,7 +19,7 @@
       <div class="loginWrap">
         <div class="loginScreen">
           <form class="signupForm" id="userNameForm"><i class="fa fa-user"></i><input id="userNameInput" name="user" type="text" placeholder="Username" class="login userInput"></input></form>
-          <form class="signupForm" id="passwordForm"><i class="fa fa-unlock"></i><input id="passwordInput" name="pass" type="text" placeholder="Password" class="login passwordInput"></input></form>
+          <form class="signupForm" id="passwordForm"><i class="fa fa-unlock"></i><input id="passwordInput" name="pass" type="password" placeholder="Password" class="login passwordInput"></input></form>
         </div>
         <div class="signUpWrap">
           <form><button id="logInButton" class="btn btn-default btn-md">Log In</button></form>
@@ -30,7 +30,7 @@
   </div>
 
 <!-- jason add -->
-
+  <div class="contentWrap hidden">
     <div class="wrapper">
       <div class="chatters-box">
         <div class="top-box">
@@ -39,7 +39,6 @@
       <div class="user-wrapper">
         <div class="username-box">
           <div class="individUser">
-            <i class="fa fa-coffee"></i></button><span class="online-users">Username</span>
           </div>
           </div>
         </div>
@@ -48,28 +47,28 @@
 
 <!-- Kelsey Add -->
 
-<div class="rightWrapper">
-<header class="user">
-    <div class="click-nav">
+  <div class="rightWrapper">
+  <header class="user">
+      <div class="click-nav">
 
+      </div>
+  </header>
+
+  <section class="messages">
+    <div class="outputs">
+      <ul class="outputs-IM">
+
+      </ul>
     </div>
-</header>
-
-<section class="messages">
-  <div class="outputs">
-    <ul class="outputs-IM">
-
-    </ul>
+  </section>
+  <div class="input-box">
+    <div class="input-post">
+        <textarea id="post" name="name" placeholder="What's up jack?"></textarea>
+      <button id="postButton" type="button" class="btn btn-success">Shoot</button>
+    </div>
   </div>
-</section>
-<div class="input-box">
-  <div class="input-post">
-      <textarea id="post" name="name" placeholder="What's up jack?"></textarea>
-    <button id="postButton" type="button" class="btn btn-success">Shoot</button>
   </div>
 </div>
-</div>
-
 
 
 
@@ -81,6 +80,7 @@
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="bower_components/underscore/underscore-min.js"></script>
 <script type="text/javascript" src="bower_components/moment/min/moment.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/js/dropdown.js"></script>
 <script type="text/javascript" src="data.js"></script>
 <script type="text/javascript" src="main.js"></script>
 <!--         -->
