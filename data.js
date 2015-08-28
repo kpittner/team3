@@ -18,8 +18,10 @@ templates.posts = [
 ].join("");
 
 templates.userStatus = [
-  '<div class= "statusWrap">',
+  '<% if (login === "yes") { %>',
+  '<div class= "statusWrap" data-id="<%= _id %>">',
   '<i class="fa fa-coffee"></i>',
   '<span class="online-users"><%= username %></span>',
-  '</div>'
+  '</div>',
+  '<% } %>'
 ].join("");
